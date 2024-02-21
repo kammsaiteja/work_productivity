@@ -1,0 +1,42 @@
+Case 1:
+
+import matplotlib.pyplot as plt
+from collections import Counter
+
+text = "Union Finance minister Nirmala Sitharaman presented the Interim Budget today ahead of the Lok Sabha elections in 2024, marking the final budget in the second term of Prime Minister Narendra Modi. This budget is interim in nature and the comprehensive budget for the financial year 2024-25 will be introduced only after the formation of the new government following the general elections."
+
+words = text.split()
+
+word_freq = Counter(words)
+
+words = list(word_freq.keys())
+freqs = list(word_freq.values())
+
+words, freqs = zip(*sorted(zip(words, freqs), key=lambda x: x[1], reverse=True))
+
+plt.figure(figsize=(10, 5))
+plt.plot(words, freqs, linestyle='-')
+plt.title('Frequency Distribution of Words')
+plt.xlabel('Word')
+plt.ylabel('Frequency')
+plt.yticks(range(0, 11, 1))
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
+
+
+
+Case 2:
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+text = "Union Finance minister Nirmala Sitharaman presented the Interim Budget today ahead of the Lok Sabha elections in 2024, marking the final budget in the second term of Prime Minister Narendra Modi. This budget is interim in nature and the comprehensive budget for the financial year 2024-25 will be introduced only after the formation of the new government following the general elections."
+
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Word Cloud')
+plt.show()
